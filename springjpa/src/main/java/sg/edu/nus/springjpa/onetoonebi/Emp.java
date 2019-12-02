@@ -1,6 +1,7 @@
 package sg.edu.nus.springjpa.onetoonebi;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,9 @@ public class Emp {
     private int id;
     private String name;
     private long salary;
+    @OneToOne (fetch = FetchType.EAGER)
+    @JoinColumn(name="PSPACE_ID") 
+    private Parking parking;
     
     public Emp() {
 		super();
@@ -27,9 +31,7 @@ public class Emp {
 		this.parking = parking;
 	}
 
-	@OneToOne 
-    @JoinColumn(name="PSPACE_ID") 
-    private Parking parking;
+	
 
     public int getId() {
         return id;

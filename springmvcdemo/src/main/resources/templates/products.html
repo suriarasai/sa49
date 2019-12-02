@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Products</title>
+</head>
+<body>
+  <h1>Try Using Model Objects</h1>
+  <h2>Product Listing Table</h2>
+  <table>
+  <tr th:each="product:${products}">
+  <td th:text=${product.id}>Id</td>
+  <td th:text=${product.name}>Name</td>
+  <td th:text=${product.description}>Desc</td>
+  <td th:text=${product.type}>Type</td>
+  <td th:text=${product.price}>Price</td>
+  <td th:text=${product.currentStock}>Stock</td>
+  <td>Edit Hyperlink</td>
+  <td>Delete Hyperlink</td>
+  </tr>
+  </table>
+</body>
+</html>
