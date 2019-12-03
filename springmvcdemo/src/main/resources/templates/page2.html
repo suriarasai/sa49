@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Page 2</title>
+</head>
+<body>
+ <h1>Page 2 from controller 1</h1>
+ <h2>Model Data</h2>
+  <p th:text="${m}">Para 1</p>
+   <h2>Session Data</h2>
+  <p th:text="${session.usersession.name}">Para 2</p>
+
+  <p th:text="${session.usersession.role}">Para 2</p>
+</body>
+</html>

@@ -2,22 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Products</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<title th:utext=#{products.title}>title</title>
 </head>
 <body>
-  <h1>Try Using Model Objects</h1>
-  <h2>Product Listing Table</h2>
-  <table>
-  <tr th:each="product:${products}">
-  <td th:text=${product.id}>Id</td>
-  <td th:text=${product.name}>Name</td>
-  <td th:text=${product.description}>Desc</td>
-  <td th:text=${product.type}>Type</td>
-  <td th:text=${product.price}>Price</td>
-  <td th:text=${product.currentStock}>Stock</td>
-  <td>Edit Hyperlink</td>
-  <td>Delete Hyperlink</td>
-  </tr>
-  </table>
+	<div th:insert="~{home :: home}">
+		<p th:utext="#{products.hometitle}">home</p>
+	</div>
+	<!-- Add Hyperlink -->
+	<a href="AddProduct.html" th:href="@{/product/add}"
+		th:utext="#{products.addlabel}">label</a>
+
+	<h2 th:utext="#{products.header}">header</h2>
+	<table class="w3-container">
+		<tr th:each="product:${products}">
+			<td th:text=${product.id}>Id</td>
+			<td th:text=${product.name}>Name</td>
+			<td th:text=${product.description}>Desc</td>
+			<td th:text=${product.type}>Type</td>
+			<td th:text=${product.price}>Price</td>
+			<td th:text=${product.currentStock}>Stock</td>
+			<td><a href="EditProduct.html"
+				th:href="@{/product/edit/}+${product.id}"> Edit </a></td>
+			<td><a href="DeleteProduct.html"
+				th:href="@{/product/delete/}+${product.id}"> Delete </a></td>
+		</tr>
+	</table>
+	<div th:insert="~{home :: copy}">Copy</div>
 </body>
 </html>

@@ -1,14 +1,22 @@
 package sg.edu.nus.mvcdemo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Product {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String nn;
 	private String description;
+	@Length(min = 3, max = 20)
 	private String type;
 	private double price;
 	private long currentStock;

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+</head>
+<body>
+	<div th:fragment="home" class="w3-panel w3-pale-blue w3-card">
+		<div class="w3-container w3-tangerine">
+			<p class="w3-large" align="center">Beautiful Header</p>
+		</div>
+	</div>
+
+	<div class="w3-container">
+		<h1>Welcome to Your Wonderful Project</h1>
+		<h2>Some interesting story about your team</h2>
+		
+		<a href="scontroller2.html" th:href="@{/login}">Log In Page</a> <br />
+		
+		<img src="team.png" class="w3-border w3-padding" alt="Team X"
+			style="max-height: 400px; max-width: 400px">
+	</div>
+	<div th:fragment="copy" >
+	   <p class="w3-wide"  align="center">&copy; 2019 ISS, NUS, All Rights Reserved </p>
+	</div>
+
+</body>
+</html>

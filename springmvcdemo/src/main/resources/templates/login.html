@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<title>Login</title>
+</head>
+<body>
+	<div th:insert="~{home :: home}">Home</div>
+	<h1>Login Page</h1>
+	<form th:object="${user}" th:action="@{/authenticate}" method="post"
+		class="w3-container">
+		<fieldset>
+			<p>Name: <input type="text" th:field="${user.name}" class="w3-input">
+			</p>
+		</fieldset>
+		<fieldset>
+			<p>Password: <input type="password" th:field="${user.password}" class="w3-input">
+			</p>
+		</fieldset>
+				<fieldset>
+			<button type="submit" class="w3-btn w3-navy">Submit</button>
+		</fieldset>
+	</form>
+
+	<div th:insert="~{home :: copy}">Copy</div>
+
+</body>
+</html>
