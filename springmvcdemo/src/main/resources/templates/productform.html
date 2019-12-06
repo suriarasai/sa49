@@ -3,20 +3,23 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Product Form</title>
 </head>
 <body>
-<div th:insert="~{home :: home}">Home</div>
-<h1>Product Form</h1>
-	<form th:object="${product}" th:action="@{/product/save}" method="post">
+	<div th:insert="~{home :: home}">Home</div>
+	<h1>Product Form</h1>
+	<form action="#" th:object="${product}" th:action="@{/product/save}"
+		method="get" class="w3-container">
+	
 		<fieldset>
-			Name: <input type="text" th:field="*{name}" >
+			Name: <input type="text" th:field="*{name}">
 			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 		</fieldset>
 		<fieldset>
 			Description: <input type="text" th:field="*{description}">
-			<p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+			<p th:if="${#fields.hasErrors('description')}"
+				th:errors="*{description}"></p>
 		</fieldset>
 		<fieldset>
 			Type: <input type="text" th:field="*{type}">
@@ -28,7 +31,8 @@
 		</fieldset>
 		<fieldset>
 			Stock: <input type="text" th:field="*{currentStock}">
-			<p th:if="${#fields.hasErrors('currentStock')}" th:errors="*{currentStock}"></p>
+			<p th:if="${#fields.hasErrors('currentStock')}"
+				th:errors="*{currentStock}"></p>
 		</fieldset>
 		<fieldset>
 			<button type="submit">Save</button>

@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import sg.edu.nus.mvcdemo.model.Product;
 import sg.edu.nus.mvcdemo.repo.ProductRepository;
+import sg.edu.nus.mvcdemo.service.ProductServiceImpl;
+import sg.edu.nus.mvcdemo.service.ProductServices;
 
 @Controller
 @RequestMapping("/product")
@@ -26,6 +28,13 @@ public class ProductController {
 	@Autowired
 	private ProductRepository prepo;
 	
+	@Autowired
+	private ProductServices pservice;
+	
+	@Autowired
+	public void setProductServices(ProductServiceImpl pimpl) {
+        this.pservice = pimpl;
+    }
 	  @InitBinder
 	  protected void initBinder(WebDataBinder binder) {
 		//binder.addValidators(new ProductValidator());
@@ -47,15 +56,16 @@ public class ProductController {
 		return "productform";
 	}
 
-	@PostMapping("/save")
-	public String saveProduct(@Valid @ModelAttribute Product product, BindingResult bindingResult) {
+	//@PostMapping("/save")
+	@RequestMapping(value = "/save", path = "/save", method = { RequestMethod.GET, RequestMethod.POST }, produces = "text/html")
+	public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			//model.addAttribute("product", product);
+			model.addAttribute("product", product);
 
 			return "productform";
 		}
 		prepo.save(product);
-		return "redirect:/product/list";
+		return "forward:/product/list";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -68,7 +78,7 @@ public class ProductController {
 	public String deleteMethod(Model model, @PathVariable("id") Integer id) {
 		Product product = prepo.findById(id).get();
 		prepo.delete(product);
-		return "redirect:/product/list";
+		return "forward:/product/list";
 	}
 
 }
