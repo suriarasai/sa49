@@ -1,8 +1,6 @@
 package sg.edu.nus.restful.domain;
 
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Car implements Serializable {
+public class Car  {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
@@ -104,7 +102,7 @@ public class Car implements Serializable {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
+    
 	public Owner getOwner() {
 		return owner;
 	}
@@ -112,11 +110,12 @@ public class Car implements Serializable {
 	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
-
+    
 	@Override
 	public String toString() {
 		return "Car [id=" + id + ", brand=" + brand + ", model=" + model + ", color=" + color + ", registerNumber="
-				+ registerNumber + ", year=" + year + ", price=" + price + ", owner=" + owner + "]";
+				+ registerNumber + ", year=" + year + ", price=" + price + ", owner=" + owner
+				+ "]";
 	}
 	
 	

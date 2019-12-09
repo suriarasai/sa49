@@ -1,6 +1,5 @@
 package sg.edu.nus.restful.domain;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,7 +12,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Owner implements Serializable {
+public class Owner {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -65,7 +64,7 @@ public class Owner implements Serializable {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
+    
 	public List<Car> getCars() {
 		return cars;
 	}
@@ -73,7 +72,7 @@ public class Owner implements Serializable {
 	public void setCars(List<Car> cars) {
 		this.cars = cars;
 	}
-
+    
 	@Override
 	public String toString() {
 		return "Owner [ownerid=" + ownerid + ", firstname=" + firstname + ", lastname=" + lastname + ", cars=" + cars

@@ -13,19 +13,11 @@ import sg.edu.nus.restful.repository.OwnerRepository;
 
 @SpringBootApplication
 public class RestdemoApplication {
-
+	@Autowired
 	private CarRepository carrepo;
+	@Autowired
 	private OwnerRepository ownrepo;
 	
-	@Autowired
-	public void setCarRepository(CarRepository crepo) {
-		this.carrepo = crepo;
-	}
-    @Autowired
-    public void setOwnerRepoitory(OwnerRepository orepo) {
-    	this.ownrepo = orepo;
-    }
-    
 	public static void main(String[] args) {
 		SpringApplication.run(RestdemoApplication.class, args);
 	}
