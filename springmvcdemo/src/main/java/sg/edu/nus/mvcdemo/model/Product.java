@@ -1,6 +1,5 @@
 package sg.edu.nus.mvcdemo.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +10,7 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 public class Product {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name = "id", updatable = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private int id;
 	private String nn;
 	private String description;
