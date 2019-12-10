@@ -11,7 +11,9 @@
 	<h1>Product Form</h1>
 	<form action="#" th:object="${product}" th:action="@{/product/save}"
 		method="get" class="w3-container">
-	
+		<fieldset>
+		<input type="hidden" th:field="*{id}">  
+		</fieldset>
 		<fieldset>
 			Name: <input type="text" th:field="*{name}">
 			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>

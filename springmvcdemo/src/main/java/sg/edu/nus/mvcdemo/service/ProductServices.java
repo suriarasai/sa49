@@ -9,10 +9,10 @@ public interface ProductServices {
 	
 	public ArrayList<Product> findAllProducts();
 	public Product findProductById(int id);
-	public Product findProductByExample(Product p);
+	public ArrayList<Product> findProductByExample(Product p);
 	public void saveProduct(Product p);
 	public void deleteProduct(Product p);
-	public ArrayList<Supplier> listOfSuppliers();
+	public ArrayList<Supplier> listOfSuppliers(int id);
 	
 
 }

@@ -1,7 +1,5 @@
 package sg.edu.nus.mvcdemo.controllers;
 
-import java.util.ArrayList;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import sg.edu.nus.mvcdemo.model.Product;
-import sg.edu.nus.mvcdemo.repo.ProductRepository;
 import sg.edu.nus.mvcdemo.service.ProductServiceImpl;
 import sg.edu.nus.mvcdemo.service.ProductServices;
 
@@ -25,8 +22,6 @@ import sg.edu.nus.mvcdemo.service.ProductServices;
 @RequestMapping("/product")
 public class ProductController {
 
-	@Autowired
-	private ProductRepository prepo;
 	
 	@Autowired
 	private ProductServices pservice;
@@ -43,9 +38,7 @@ public class ProductController {
 
 	@GetMapping("/list")
 	public String listAll(Model model) {
-		ArrayList<Product> plist = new ArrayList<Product>();
-		plist.addAll(prepo.findAll());
-		model.addAttribute("products", plist);
+		model.addAttribute("products", pservice.findAllProducts());
 		return "products";
 	}
 
@@ -61,24 +54,28 @@ public class ProductController {
 	public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("product", product);
-
 			return "productform";
 		}
-		prepo.save(product);
+		pservice.saveProduct(product);
 		return "forward:/product/list";
 	}
 	
 	@GetMapping("/edit/{id}")
 	public String showEditForm(Model model, @PathVariable("id") Integer id) {	
-		Product product = prepo.findById(id).get();
-		model.addAttribute("product", product);
+		model.addAttribute("product", pservice.findProductById(id));
 		return "productform";
 	}
 	@GetMapping("/delete/{id}")
 	public String deleteMethod(Model model, @PathVariable("id") Integer id) {
-		Product product = prepo.findById(id).get();
-		prepo.delete(product);
+		Product product = pservice.findProductById(id);
+		pservice.deleteProduct(product);
 		return "forward:/product/list";
+	}
+	
+	@GetMapping("/supplierlist/{id}")
+	public String supplierList(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("suppliers", pservice.listOfSuppliers(id));
+		return "supplierlist";
 	}
 
 }
