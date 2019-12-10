@@ -13,4 +13,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
 	// Fetch cars by color
 	List<Car> findByColor(@Param("color") String color);
+	
+	//@Query
 }
